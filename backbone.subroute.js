@@ -36,23 +36,14 @@
 
             // Required to have Backbone set up routes
             Backbone.Router.prototype.constructor.call( this, options );
-          
-            // grab the full URL
-            var hash;
-            if (Backbone.history.fragment) {
-                hash = Backbone.history.getFragment();
-            } else {
-                hash = Backbone.history.getHash();
-            }
 
-            // Trigger the subroute immediately.  this supports the case where 
-            // a user directly navigates to a URL with a subroute on the first page load.
-            if (hash.indexOf(prefix) === 0) {
+            // grab the full URL if the history was already initialized
+            if (Backbone.history !== undefined && Backbone.history.getHash !== undefined) {
+                var hash = Backbone.history.getHash();
+
+                // Trigger the subroute immediately.  this supports the case where
+                // a user directly navigates to a URL with a subroute on the first page load.
                 Backbone.history.loadUrl( hash );
-            }
-
-            if (this.postInitialize) {
-                this.postInitialize(options);
             }
         },
         navigate:function ( route, options ) {
