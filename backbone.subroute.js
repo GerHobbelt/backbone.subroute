@@ -74,7 +74,7 @@
 
                 // Trigger the subroute immediately.  this supports the case where
                 // a user directly navigates to a URL with a subroute on the first page load.
-                Backbone.history.loadUrl( hash );
+                //Backbone.history.loadUrl( hash );
             }
         },
         navigate:function ( route, options ) {
